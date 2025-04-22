@@ -1,6 +1,7 @@
 import { Jost } from "next/font/google";
 import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
+import HomeSlider from "@/components/HomeSlider";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ export default function Home() {
     <div className={jost.className}>
       <Header />
       <NavigationMenu />
+      <HomeSlider />
     </div>
   );
 }
