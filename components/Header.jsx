@@ -10,10 +10,15 @@ const staticGoods = ['iPhone 14', 'Samsung Galaxy', 'MacBook Pro', 'AirPods', 'A
 
 export default function Header() {
     return (
-        <div className='w-full h-[100px] flex justify-between items-center px-[100px] shadow'>
-            <Image src={logo} alt="logo" className='w-[130px]' />
+        <div className='w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[100px] lg:h-[100px]'>
+            <Image src={logo} alt="logo" className='w-[70px] lg:w-[130px]' />
+            <div className='w-[30px] h-[20px] flex flex-col justify-between lg:hidden'>
+                <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
+                <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
+                <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
+            </div>
 
-            <div className="flex rounded-md overflow-hidden border-[1.5px] border-[#023047] w-[650px] h-[50px]">
+            <div className="hidden rounded-md overflow-hidden border-[1.5px] border-[#023047] w-[650px] h-[50px] lg:flex">
                 <Autocomplete
                     freeSolo
                     disableClearable
@@ -47,7 +52,7 @@ export default function Header() {
                 </button>
             </div>
 
-            <div className="flex items-center gap-5 ml-6">
+            <div className="items-center gap-5 ml-6 hidden lg:flex">
                 <div className='relative'>
                     <Image src={shoppingCart} alt="shoppingCart" className='w-[25px]' />
                     <span className='w-[16px] h-[16px] rounded-full bg-[#023047] flex justify-center items-center border-[0.5px] border-[#fff] text-[#fff] text-[10px] font-semibold absolute top-[-6px] right-[-6px]'>2</span>

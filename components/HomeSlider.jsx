@@ -14,7 +14,7 @@ export default function HomeSlider() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1, // show only one slide at a time
+        slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
         autoplay: true,
@@ -31,7 +31,7 @@ export default function HomeSlider() {
         {
             title: 'Women',
             titleHighlighted: 'Collection 2025',
-            description: 'Fancy spring collection for women and girls',
+            description: 'Fancy spring collection for women',
             image: sliderImg2,
         },
         {
@@ -43,13 +43,13 @@ export default function HomeSlider() {
     ]
 
     return (
-        <div className='w-full h-[550px] relative bg-[#023047] overflow-hidden'>
+        <div className='w-full h-[470px] relative bg-[#023047] overflow-hidden lg:h-[550px]'>
             <Image
                 src={sliderBgImg}
                 alt='sliderBgImg'
-                className='opacity-50 h-full w-auto absolute right-0 z-0'
+                className='opacity-50 w-full h-auto absolute right-0 z-0 lg:h-full lg:w-auto'
             />
-            <div className='relative z-10 px-[100px] h-full'>
+            <div className='relative z-10 px-[30px] h-full lg:px-[100px]'>
                 <Slider {...settings} className='h-full flex items-center'>
                     {sliderInfo.map((slide, index) => (
                         <SliderElement key={index} {...slide} />
