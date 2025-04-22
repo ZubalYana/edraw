@@ -10,7 +10,7 @@ const staticGoods = ['iPhone 14', 'Samsung Galaxy', 'MacBook Pro', 'AirPods', 'A
 
 export default function Header() {
     return (
-        <div className='w-full h-[110px] flex justify-between items-center px-[100px]'>
+        <div className='w-full h-[100px] flex justify-between items-center px-[100px] shadow'>
             <Image src={logo} alt="logo" className='w-[130px]' />
 
             <div className="flex rounded-md overflow-hidden border-[1.5px] border-[#023047] w-[650px] h-[50px]">
