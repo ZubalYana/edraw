@@ -7,8 +7,8 @@ export default function Advantage({ key, icon, title, subtitle, isHighlighted })
                 <Image src={icon} alt="icon" />
             </div>
             <div className='flex flex-col ml-[15px]'>
-                <p className='text-[24px] font-semibold text-[#333333]'>{title}</p>
-                <p className='text-[14px] font-normal text-[#666666]'>{subtitle}</p>
+                <p className='text-[24px] font-semibold text-[#333333] lg:text-[16px] xl:text-[24px]'>{title}</p>
+                <p className='text-[14px] font-normal text-[#666666] lg:text-[12px] xl:text-[14px]'>{subtitle}</p>
             </div>
         </div>
     )

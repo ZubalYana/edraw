@@ -32,7 +32,7 @@ export default function Advantages() {
     },
   ]
   return (
-    <div className='w-full h-[260px] bg-[#F3F3F3] px-[20px] lg:px-[70px] xl:px-[100px] flex justify-between items-center'>
+    <div className='w-full h-[420px] gap-y-5 pt-5 bg-[#F3F3F3] px-[20px] lg:px-[70px] xl:px-[100px] flex flex-col items-center sm:flex-wrap sm:flex-row sm:gap-y-0 sm:h-[300px] sm:gap-x-5 lg:justify-between lg:flex-nowrap lg:h-[260px] lg:pt-0'>
       {advantages.map((advantage, index) => (
         <Advantage
           key={index}
