@@ -43,7 +43,7 @@ export default function HomeSlider() {
     ]
 
     return (
-        <div className='w-full h-[470px] relative bg-[#023047] overflow-hidden lg:h-[550px]'>
+        <div className='w-full h-[470px] relative bg-[#023047] overflow-hidden lg:h-[724px]'>
             <Image
                 src={sliderBgImg}
                 alt='sliderBgImg'

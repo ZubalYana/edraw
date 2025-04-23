@@ -9,7 +9,7 @@ export default function NavigationMenu() {
                 <p className='text-[14px] ml-[10px] font-medium'>All Departments</p>
             </div>
 
-            <ul className='w-full flex justify-between flex-wrap gap-x-2 items-center text-[13px] font-normal [&>li]:cursor-pointer lg:w-[665px] lg:justify-between mt-3 lg:flex-nowrap lg:gap-0 lg:m-0'>
+            <ul className='w-full flex justify-between flex-wrap gap-x-2 items-center text-[13px] font-normal [&>li]:cursor-pointer lg:w-[665px] lg:justify-between mt-3 lg:flex-nowrap lg:gap-0 lg:m-0 lg:text-[16px]'>
                 <li>Home</li>
                 <li>Shop</li>
                 <li>Categories</li>
