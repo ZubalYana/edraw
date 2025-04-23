@@ -4,11 +4,11 @@ import Button from '@mui/material/Button';
 
 export default function SliderElement({ title, titleHighlighted, description, image }) {
     return (
-        <div className='w-full h-[430px] pt-2 flex flex-col-reverse justify-between items-start px-[10px] lg:px-[80px] lg:flex-row lg:h-[724px] lg:items-center lg:pt-0'>
+        <div className='w-full h-[430px] pt-2 flex flex-col-reverse justify-between items-start px-[10px] 2xs:h-[550px] lg:px-[40px] xl:px-[70px] lg:h-[450px] lg:flex-row xl:h-[724px] lg:items-center xl:pt-0'>
 
             <div>
                 <p className='text-[14px] font-normal text-[#9CDEFF]'>New Inspirations</p>
-                <h2 className='text-[28px] font-bold text-[#fff] lg:text-[64px]'>
+                <h2 className='text-[28px] font-bold text-[#fff] xl:text-[64px]'>
                     {title} <br />
                     <span className='text-[#9CDEFF]'>{titleHighlighted}</span>
                 </h2>
@@ -39,11 +39,11 @@ export default function SliderElement({ title, titleHighlighted, description, im
 
             </div>
 
-            <div className='flex items-center justify-center h-[200px] lg:h-full'>
+            <div className='flex items-center justify-center h-[200px] 2xs:h-[300px] sm:h-[500px] xl:h-full'>
                 <Image
                     src={image}
                     alt='sliderImg'
-                    className='max-h-[600px] w-auto'
+                    className='max-h-[600px] w-auto sm:max-h-[300px] xl:max-h-[600px]'
                 />
             </div>
         </div>

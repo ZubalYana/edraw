@@ -17,7 +17,7 @@ export default function HomeSlider() {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        autoplay: true,
+        // autoplay: true,
         autoplaySpeed: 4000,
     }
 
@@ -43,13 +43,13 @@ export default function HomeSlider() {
     ]
 
     return (
-        <div className='w-full h-[470px] relative bg-[#023047] overflow-hidden lg:h-[724px]'>
+        <div className='w-full h-[470px] relative bg-[#023047] overflow-hidden 2xs:h-[600px] lg:h-[450px] xl:h-[724px]'>
             <Image
                 src={sliderBgImg}
                 alt='sliderBgImg'
-                className='opacity-50 w-full h-auto absolute right-0 z-0 lg:h-full lg:w-auto'
+                className='opacity-50 w-full h-auto absolute right-0 z-0 sm:h-[80%] sm:w-auto xl:h-full'
             />
-            <div className='relative z-10 px-[30px] h-full lg:px-[100px]'>
+            <div className='relative z-10 px-[30px] h-full xl:px-[100px]'>
                 <Slider {...settings} className='h-full flex items-center'>
                     {sliderInfo.map((slide, index) => (
                         <SliderElement key={index} {...slide} />

@@ -3,13 +3,13 @@ import Image from 'next/image'
 import menuVector from '../public/menuVector.svg'
 export default function NavigationMenu() {
     return (
-        <div className='w-full h-auto mb-2 px-[20px] text-[#333333] flex flex-col justify-between items-start lg:px-[100px] lg:flex-row lg:items-center lg:h-[45px] lg:mb-0'>
+        <div className='w-full h-auto mb-2 px-[20px] text-[#333333] flex flex-col justify-between items-start lg:px-[70px]  lg:flex-row lg:items-center lg:h-[45px] lg:mb-0 xl:px-[100px]'>
             <div className='flex items-center mt-3 lg:m-0'>
                 <Image src={menuVector} alt="menuVector" />
                 <p className='text-[14px] ml-[10px] font-medium'>All Departments</p>
             </div>
 
-            <ul className='w-full flex justify-between flex-wrap gap-x-2 items-center text-[13px] font-normal [&>li]:cursor-pointer lg:w-[665px] lg:justify-between mt-3 lg:flex-nowrap lg:gap-0 lg:m-0 lg:text-[16px]'>
+            <ul className='w-full flex justify-between flex-wrap gap-x-2 items-center text-[13px] font-normal [&>li]:cursor-pointer lg:w-[600px] lg:justify-between mt-3 lg:flex-nowrap lg:gap-0 lg:m-0 xl:text-[16px] xl:w-[900px]'>
                 <li>Home</li>
                 <li>Shop</li>
                 <li>Categories</li>

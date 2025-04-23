@@ -10,15 +10,15 @@ const staticGoods = ['iPhone 14', 'Samsung Galaxy', 'MacBook Pro', 'AirPods', 'A
 
 export default function Header() {
     return (
-        <div className='w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[100px] lg:h-[100px]'>
-            <Image src={logo} alt="logo" className='w-[70px] lg:w-[130px]' />
+        <div className='w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[70px] lg:h-[100px] xl:px-[100px]'>
+            <Image src={logo} alt="logo" className='w-[70px] xl:w-[130px]' />
             <div className='w-[30px] h-[20px] flex flex-col justify-between lg:hidden'>
                 <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
                 <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
                 <div className='w-full h-1 bg-[#023047] rounded-xs'></div>
             </div>
 
-            <div className="hidden rounded-md overflow-hidden border-[1.5px] border-[#023047] w-[650px] h-[50px] lg:flex">
+            <div className="hidden rounded-md overflow-hidden border-[1.5px] border-[#023047] w-[530px] h-[50px] lg:flex xl:w-[650px]">
                 <Autocomplete
                     freeSolo
                     disableClearable
