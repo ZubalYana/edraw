@@ -4,6 +4,7 @@ import NavigationMenu from "@/components/NavigationMenu";
 import HomeSlider from "@/components/HomeSlider";
 import Advantages from "@/components/Advantages";
 import TopCollections from "@/components/TopCollections";
+import FeaturedItems from "@/components/FeaturedItems";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ export default function Home() {
       <HomeSlider />
       <Advantages />
       <TopCollections />
+      <FeaturedItems />
     </div>
   );
 }
