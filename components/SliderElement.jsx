@@ -8,7 +8,7 @@ export default function SliderElement({ title, titleHighlighted, description, im
 
             <div>
                 <p className='text-[14px] font-normal text-[#9CDEFF]'>New Inspirations</p>
-                <h2 className='text-[28px] font-bold text-[#fff] xl:text-[64px]'>
+                <h2 className='text-[28px] font-bold text-[#fff] xl:text-[58px]'>
                     {title} <br />
                     <span className='text-[#9CDEFF]'>{titleHighlighted}</span>
                 </h2>
@@ -43,7 +43,7 @@ export default function SliderElement({ title, titleHighlighted, description, im
                 <Image
                     src={image}
                     alt='sliderImg'
-                    className='max-h-[600px] w-auto sm:max-h-[300px] xl:max-h-[600px]'
+                    className='max-h-[600px] w-auto sm:max-h-[300px] xl:max-h-[470px]'
                 />
             </div>
         </div>
