@@ -6,6 +6,8 @@ import Advantages from "@/components/Advantages";
 import TopCollections from "@/components/TopCollections";
 import FeaturedItems from "@/components/FeaturedItems";
 import Discount from "@/components/Discount";
+import FromOurBlog from "@/components/FromOurBlog";
+
 const jost = Jost({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,6 +24,7 @@ export default function Home() {
       <TopCollections />
       <FeaturedItems />
       <Discount />
+      <FromOurBlog />
     </div>
   );
 }
