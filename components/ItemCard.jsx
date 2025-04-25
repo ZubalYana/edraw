@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 
 export default function ItemCard({ image, title, description, prices, rating }) {
     return (
-        <div className='w-[370px] h-[460px] bg-white shadow-md'>
+        <div className='w-full h-fit-content pb-3 bg-white shadow-md lg:w-[370px] lg:h-[460px]'>
             <div className='w-full h-[350px] relative'>
                 <Image src={image} alt={title} layout='fill' objectFit='cover' />
             </div>

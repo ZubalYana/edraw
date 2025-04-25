@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 
 export default function TopCollections() {
     return (
-        <div className='w-full h-[650px] mt-6 bg-white flex flex-col justify-around items-center px-[20px] lg:px-[70px] lg:flex-row xl:px-[100px] xl:mt-0'>
-            <div className='w-full h-[450px] bg-[#C4C4C4] flex flex-col-reverse p-4 pb-0 xl:w-[570px] xl:flex-row xl:p-0 xl:h-[450px]'>
+        <div className='w-full h-fit-content mt-6 bg-white flex flex-col justify-around items-center px-[20px] lg:px-[70px] lg:flex-row xl:px-[100px] xl:mt-0 xl:h-[650px]'>
+            <div className='w-full h-fit-content bg-[#C4C4C4] flex flex-col-reverse p-4 pb-0 xl:w-[570px] xl:flex-row xl:p-0 xl:h-[450px]'>
                 <div className='w-[55%] h-full flex items-end mt-5 xl:mt-0'>
                     <Image src={topCollectionImg1} alt="topCollectionImg1" className='w-auto max-h-[300px] xl:max-h-[500px]' />
                 </div>
@@ -40,7 +40,7 @@ export default function TopCollections() {
                     </Button>
                 </div>
             </div>
-            <div className='w-full h-[450px] bg-[#C4C4C4] flex flex-col-reverse p-4 pb-0 xl:w-[570px] xl:flex-row xl:p-0 xl:h-[450px] mt-10 lg:mt-0 lg:ml-5'>
+            <div className='w-full h-fit-content bg-[#C4C4C4] flex flex-col-reverse p-4 pb-0 xl:w-[570px] xl:flex-row xl:p-0 xl:h-[450px] mt-10 lg:mt-0 lg:ml-5'>
                 <div className='w-[40%] h-full flex items-end mt-5 xl:mt-0'>
                     <Image src={topCollectionImg2} alt="topCollectionImg2" className='w-auto max-h-[300px] xl:max-h-[500px]' />
                 </div>

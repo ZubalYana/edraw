@@ -21,10 +21,10 @@ export default function FeaturedItems() {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <div className='w-full h-auto flex flex-col items-center bg-[#F3F3F3] py-7'>
-            <h1 className='text-[30px] font-bold'>Our Featured Products:</h1>
-            <p className='text-[16px] font-normal text-[#666666] text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <div className="sorting flex justify-between items-center">
+        <div className='w-full h-auto flex flex-col items-center bg-[#F3F3F3] py-10 px-[20px]'>
+            <h1 className='text-[22px] w-[90%] text-center flex justify-center font-bold lg:text-[30px] lg:w-auto'>Our Featured Products:</h1>
+            <p className='w-[90%] text-[10px] font-normal text-[#666666] text-center lg:w-[571px] lg:text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <div className="sorting w-[90%] hidden justify-between items-center mt-3 lg:w-auto lg:flex">
                 <div className='activeSorting py-[20px] px-[25px] bg-[#023047] text-[14px] font-semibold text-[#fff]'>Hoodie</div>
                 <div className='py-[20px] px-[25px] text-[16px] font-semibold text-[#333] cursor-pointer'>Accessories</div>
                 <div className='py-[20px] px-[25px] text-[16px] font-semibold text-[#333] cursor-pointer'>Mens</div>
