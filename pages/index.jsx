@@ -16,7 +16,7 @@ const jost = Jost({
 
 export default function Home() {
   return (
-    <div className={jost.className}>
+    <div className={jost.className + " overflow-x-hidden"}>
       <Header />
       <NavigationMenu />
       <HomeSlider />
