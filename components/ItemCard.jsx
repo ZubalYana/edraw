@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 
-export default function ItemCard({ image, title, description, prices, rating }) {
+export default function ItemCard({ image, title, description, prices, rating, onAddToCart }) {
     return (
         <div className='w-full h-fit-content pb-3 bg-white shadow-md lg:w-[370px] lg:h-[460px]'>
             <div className='w-full h-[350px] relative'>
@@ -16,6 +16,7 @@ export default function ItemCard({ image, title, description, prices, rating }) 
             <div className='mt-2 w-full flex justify-between items-center px-3'>
                 <Button
                     variant="contained"
+                    onClick={onAddToCart}
                     sx={{
                         textTransform: 'none',
                         backgroundColor: '#fff',

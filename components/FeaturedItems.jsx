@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query';
 import ItemCard from './ItemCard';
 const fetchServerData = async () => {
@@ -10,15 +10,36 @@ const fetchServerData = async () => {
     return json.items;
 };
 
-
 export default function FeaturedItems() {
     const { data, error, isLoading } = useQuery({
         queryKey: ['serverData'],
         queryFn: fetchServerData,
     });
 
+    const [cart, setCart] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const storedCart = localStorage.getItem('cart');
+            return storedCart ? JSON.parse(storedCart) : [];
+        }
+        return [];
+    });
+
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart]);
+
+
+    const addToCart = (item) => {
+        setCart((prevCart) => [...prevCart, item]);
+    };
+
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
+
+
 
     return (
         <div className='w-full h-auto flex flex-col items-center bg-[#F3F3F3] py-10 px-[20px]'>
@@ -41,6 +62,7 @@ export default function FeaturedItems() {
                         description={item.description}
                         prices={item.prices}
                         rating={item.rate}
+                        onAddToCart={() => addToCart(item)}
                     />
                 ))}
 
