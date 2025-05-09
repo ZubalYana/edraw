@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-export default function Advantage({ key, icon, title, subtitle, isHighlighted }) {
+export default function Advantage({ index, icon, title, subtitle, isHighlighted }) {
     return (
-        <div className={`w-[270px] h-[80px] border px-[10px] py-[20px] flex items-center ${isHighlighted ? 'border-[#023047]' : 'border-[#CCCCCC]'}`} key={key}>
+        <div className={`w-[270px] h-[80px] border px-[10px] py-[20px] flex items-center ${isHighlighted ? 'border-[#023047]' : 'border-[#CCCCCC]'}`} key={index}>
             <div className='w-[45px] h-[45px] flex items-center justify-center'>
                 <Image src={icon} alt="icon" />
             </div>
