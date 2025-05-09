@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import logo from '../public/logo.svg'
 import heart from '../public/heart.svg'
@@ -6,9 +6,23 @@ import shoppingCart from '../public/shoppingCart.svg'
 import userLogout from '../public/userLogout.svg'
 import { Autocomplete, TextField } from '@mui/material'
 import dropdownStroke from '../public/dropdownStroke.svg'
-const staticGoods = ['iPhone 14', 'Samsung Galaxy', 'MacBook Pro', 'AirPods', 'Apple Watch']
-
+import { useQuery } from '@tanstack/react-query'
+const fetchServerGoods = async () => {
+    const res = await fetch('http://localhost:5000/items')
+    const data = await res.json()
+    return data
+}
 export default function Header() {
+    const [items, setItems] = useState([])
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['serverGoods'],
+        queryFn: fetchServerGoods
+    })
+    useEffect(() => {
+        if (data?.items) {
+            setItems(data.items)
+        }
+    }, [data])
     return (
         <div className='w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[70px] lg:h-[100px] xl:px-[100px]'>
             <Image src={logo} alt="logo" className='w-[70px] xl:w-[130px]' />
@@ -22,7 +36,7 @@ export default function Header() {
                 <Autocomplete
                     freeSolo
                     disableClearable
-                    options={staticGoods}
+                    options={items.map((option) => option.name)}
                     sx={{ flexGrow: 1 }}
                     renderInput={(params) => (
                         <TextField
