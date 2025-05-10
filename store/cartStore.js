@@ -1,9 +1,7 @@
 import { create } from 'zustand';
 
 export const useCartStore = create((set) => ({
-    cart: typeof window !== 'undefined'
-        ? JSON.parse(localStorage.getItem('cart') || '[]')
-        : [],
+    cart: [],
 
     addToCart: (item) =>
         set((state) => {
@@ -19,5 +17,12 @@ export const useCartStore = create((set) => ({
             localStorage.setItem('cart', JSON.stringify(cart));
         }
         set({ cart });
+    },
+
+    hydrateCart: () => {
+        if (typeof window !== 'undefined') {
+            const stored = JSON.parse(localStorage.getItem('cart') || '[]');
+            set({ cart: stored });
+        }
     },
 }));

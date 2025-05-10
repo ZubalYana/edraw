@@ -13,15 +13,21 @@ import Banners from "@/components/Banners";
 import Footer from "@/components/Footer";
 import { Snackbar, Alert } from '@mui/material';
 import { useUIStore } from "@/store/uiStore";
+import { useEffect } from 'react';
+import { useCartStore } from '../store/cartStore';
 
 const jost = Jost({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-
 export default function Home() {
   const { snackbar, hideSnackbar } = useUIStore();
+
+  useEffect(() => {
+    useCartStore.getState().hydrateCart();
+  }, []);
+
   return (
     <div className={jost.className + " overflow-x-hidden"}>
       <Header />
