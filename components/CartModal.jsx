@@ -11,7 +11,7 @@ export default function CartModal({ open, onClose }) {
     const updateQuantity = useCartStore((state) => state.updateQuantity);
     const removeItem = useCartStore((state) => state.removeItem);
     const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
+    const [userPhone, setUserPhone] = useState('');
 
     const total = cart.reduce((acc, item) => {
         const lastPrice = item.prices[item.prices.length - 1] ?? 0;
@@ -27,7 +27,7 @@ export default function CartModal({ open, onClose }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ cart, userName, userEmail }),
+            body: JSON.stringify({ cart, userName, userPhone }),
         })
             .then(response => response.json())
             .then(data => {
@@ -122,10 +122,10 @@ export default function CartModal({ open, onClose }) {
                     />
                     <TextField
                         id="outlined-basic"
-                        label="Email"
+                        label="Phone Number"
                         variant="outlined"
                         className='w-full'
-                        onChange={(e) => setUserEmail(e.target.value)}
+                        onChange={(e) => setUserPhone(e.target.value)}
                     />
 
                 </div>
