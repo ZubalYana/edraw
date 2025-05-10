@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { useCartStore } from '../store/cartStore';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
-
+import { Button } from '@mui/material';
 Modal.setAppElement('#__next');
 
 export default function CartModal({ open, onClose }) {
@@ -44,8 +44,11 @@ export default function CartModal({ open, onClose }) {
 
                         return (
                             <div key={`${item._id}-${quantity}`} className="flex items-center justify-between border-b pb-2">
+                                <div className='w-16'>
+                                    <img src={item.img} alt={item.name} className="w-14 h-full object-cover" />
+                                </div>
                                 <div className="flex flex-col">
-                                    <span className="font-medium">{item.name}</span>
+                                    <span className="font-medium text-[16px]">{item.name}</span>
                                     <span className="text-sm text-gray-500">${price.toFixed(2)} each</span>
                                 </div>
 
@@ -80,6 +83,23 @@ export default function CartModal({ open, onClose }) {
 
                     <div className="text-right mt-4 font-bold text-lg">
                         Total: ${total.toFixed(2)}
+                    </div>
+
+                    <div className="flex justify-center mt-4">
+                        <Button
+                            variant="contained"
+                            sx={{
+                                width: '80%',
+                                height: '40px',
+                                backgroundColor: '#023047',
+                                color: 'white',
+                                '&:hover': {
+                                    backgroundColor: '#023047',
+                                },
+                            }}
+                        >
+                            Checkout
+                        </Button>
                     </div>
                 </div>
             )}
