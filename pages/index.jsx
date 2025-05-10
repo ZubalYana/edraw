@@ -11,6 +11,8 @@ import Reviews from "@/components/Reviews";
 import Instagram from "@/components/Instagram";
 import Banners from "@/components/Banners";
 import Footer from "@/components/Footer";
+import { Snackbar, Alert } from '@mui/material';
+import { useUIStore } from "@/store/uiStore";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -19,6 +21,7 @@ const jost = Jost({
 
 
 export default function Home() {
+  const { snackbar, hideSnackbar } = useUIStore();
   return (
     <div className={jost.className + " overflow-x-hidden"}>
       <Header />
@@ -33,6 +36,21 @@ export default function Home() {
       <Instagram />
       <Banners />
       <Footer />
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={hideSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          severity={snackbar.severity}
+          onClose={hideSnackbar}
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
