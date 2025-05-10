@@ -8,6 +8,7 @@ import dropdownStroke from '../public/dropdownStroke.svg';
 import { Autocomplete, TextField } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { useCartStore } from '../store/cartStore';
+import { useUIStore } from '@/store/uiStore';
 
 const fetchServerGoods = async () => {
     const res = await fetch('http://localhost:5000/items');
@@ -18,6 +19,7 @@ const fetchServerGoods = async () => {
 export default function Header() {
     const [items, setItems] = useState([]);
     const cart = useCartStore((state) => state.cart);
+    const showCartModal = useUIStore((state) => state.showCartModal);
 
     const { data } = useQuery({
         queryKey: ['serverGoods'],
@@ -29,6 +31,7 @@ export default function Header() {
             setItems(data.items);
         }
     }, [data]);
+
 
     return (
         <div className="w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[70px] lg:h-[100px] xl:px-[100px]">
@@ -72,7 +75,7 @@ export default function Header() {
             </div>
 
             <div className="items-center gap-5 ml-6 hidden lg:flex">
-                <div className="relative">
+                <div className="relative cursor-pointer" onClick={showCartModal}>
                     <Image src={shoppingCart} alt="shoppingCart" className="w-[25px]" />
                     <span className="w-[16px] h-[16px] rounded-full bg-[#023047] flex justify-center items-center border-[0.5px] border-[#fff] text-[#fff] text-[10px] font-semibold absolute top-[-6px] right-[-6px]">
                         {cart.length}

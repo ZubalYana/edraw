@@ -20,5 +20,21 @@ export const useUIStore = create((set) => ({
                 ...state.snackbar,
                 open: false
             }
-        }))
+        })),
+
+    cartModal: {
+        open: false,
+    },
+    showCartModal: () =>
+        set({
+            cartModal: {
+                open: true,
+            }
+        }),
+    hideCartModal: () =>
+        set({
+            cartModal: {
+                open: false,
+            }
+        })
 }))

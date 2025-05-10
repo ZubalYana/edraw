@@ -15,7 +15,7 @@ import { Snackbar, Alert } from '@mui/material';
 import { useUIStore } from "@/store/uiStore";
 import { useEffect } from 'react';
 import { useCartStore } from '../store/cartStore';
-
+import CartModal from "@/components/CartModal";
 const jost = Jost({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -23,6 +23,7 @@ const jost = Jost({
 
 export default function Home() {
   const { snackbar, hideSnackbar } = useUIStore();
+  const { cartModal, hideCartModal } = useUIStore();
 
   useEffect(() => {
     useCartStore.getState().hydrateCart();
@@ -57,6 +58,11 @@ export default function Home() {
           {snackbar.message}
         </Alert>
       </Snackbar>
+      <CartModal
+        open={cartModal.open}
+        onClose={hideCartModal}
+      />
+
     </div>
   );
 }
