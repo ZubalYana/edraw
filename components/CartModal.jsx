@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useCartStore } from '../store/cartStore';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
-import { Button } from '@mui/material';
-import TextField from '@mui/material/TextField';
+import { Button, TextField } from '@mui/material';
+
 Modal.setAppElement('#__next');
 
 export default function CartModal({ open, onClose }) {
     const cart = useCartStore((state) => state.cart);
     const updateQuantity = useCartStore((state) => state.updateQuantity);
     const removeItem = useCartStore((state) => state.removeItem);
+
     const [userName, setUserName] = useState('');
     const [userPhone, setUserPhone] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userComment, setUserComment] = useState('');
 
     const total = cart.reduce((acc, item) => {
         const lastPrice = item.prices[item.prices.length - 1] ?? 0;
@@ -19,27 +22,21 @@ export default function CartModal({ open, onClose }) {
         return acc + lastPrice * quantity;
     }, 0);
 
-    console.log(cart);
-
     const sendOrder = () => {
         fetch('http://localhost:5000/sendOrderDetails', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ cart, userName, userPhone }),
+            body: JSON.stringify({ cart, userName, userPhone, userEmail, userComment }),
         })
             .then(response => response.json())
-            .then(data => {
-                console.log('Order sent successfully:', data);
-            })
-            .catch(error => {
-                console.error('Error sending order:', error);
-            });
-
-        // onClose();
+            .then(data => console.log('Order sent successfully:', data))
+            .catch(error => console.error('Error sending order:', error));
     };
 
+    const truncate = (str, maxLength) =>
+        str.length > maxLength ? str.slice(0, maxLength) + '...' : str;
 
     return (
         <Modal
@@ -52,17 +49,15 @@ export default function CartModal({ open, onClose }) {
             <button onClick={onClose} className="text-gray-500 hover:text-black absolute top-4 right-4">
                 <X className="w-5 h-5" />
             </button>
-            <div className='flex'>
-                <div className="order w-[500px]">
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-xl font-semibold">Your Cart</h2>
 
-                    </div>
+            <div className="flex flex-col lg:flex-row gap-6">
+                <div className="w-full lg:w-[500px]">
+                    <h2 className="text-xl font-semibold mb-4">Your Cart</h2>
 
                     {cart.length === 0 ? (
                         <p className="text-center text-gray-500">Your cart is empty.</p>
                     ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-4 max-h-[240px] overflow-y-auto custom-scroll pr-[10px]">
                             {cart.map((item) => {
                                 const price = item.prices[item.prices.length - 1] ?? 0;
                                 const quantity = item.quantity ?? 1;
@@ -70,12 +65,12 @@ export default function CartModal({ open, onClose }) {
 
                                 return (
                                     <div key={`${item._id}-${quantity}`} className="flex items-center justify-between border-b pb-2">
-                                        <div className='w-16'>
-                                            <img src={item.img} alt={item.name} className="w-14 h-full object-cover" />
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <span className="font-medium text-[16px]">{item.name}</span>
-                                            <span className="text-sm text-gray-500">${price.toFixed(2)} each</span>
+                                        <img src={item.img} alt={item.name} className="w-14 h-14 object-cover rounded" />
+                                        <div className="flex flex-col w-[220px]">
+                                            <span className="font-medium text-sm">
+                                                {truncate(item.name, 25)}
+                                            </span>
+                                            <span className="text-xs text-gray-500">${price.toFixed(2)} each</span>
                                         </div>
 
                                         <div className="flex items-center gap-2">
@@ -86,14 +81,14 @@ export default function CartModal({ open, onClose }) {
                                             >
                                                 <Minus size={16} />
                                             </button>
-                                            <span className="px-2">{quantity}</span>
+                                            <span className="px-2 text-sm">{quantity}</span>
                                             <button
                                                 onClick={() => updateQuantity(item._id, quantity + 1)}
                                                 className="p-1 text-gray-600 hover:text-black"
                                             >
                                                 <Plus size={16} />
                                             </button>
-                                            <span className="ml-4 font-semibold text-gray-700">
+                                            <span className="ml-4 font-semibold text-gray-700 text-sm">
                                                 ${subtotal}
                                             </span>
                                             <button
@@ -106,32 +101,43 @@ export default function CartModal({ open, onClose }) {
                                     </div>
                                 );
                             })}
-                            <div className="text-right mt-4 font-bold text-lg">
-                                Total: ${total.toFixed(2)}
-                            </div>
+
                         </div>
+
                     )}
+                    <div className="text-left mt-4 font-bold text-lg">
+                        Total: ${total.toFixed(2)}
+                    </div>
                 </div>
-                <div className="infoFields ml-7 flex flex-col gap-4 w-[300px]">
+
+                <div className="w-full lg:w-[320px] flex flex-col gap-4">
                     <TextField
-                        id="outlined-basic"
                         label="Name"
                         variant="outlined"
-                        className='w-full'
+                        fullWidth
                         onChange={(e) => setUserName(e.target.value)}
+                        value={userName}
                     />
                     <TextField
-                        id="outlined-basic"
                         label="Phone Number"
                         variant="outlined"
-                        className='w-full'
+                        fullWidth
                         onChange={(e) => setUserPhone(e.target.value)}
+                        value={userPhone}
                     />
-
+                    <TextField
+                        label="Comment"
+                        variant="outlined"
+                        fullWidth
+                        multiline
+                        rows={3}
+                        onChange={(e) => setUserComment(e.target.value)}
+                        value={userComment}
+                    />
                 </div>
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-6">
                 <Button
                     variant="contained"
                     sx={{
@@ -140,7 +146,7 @@ export default function CartModal({ open, onClose }) {
                         backgroundColor: '#023047',
                         color: 'white',
                         '&:hover': {
-                            backgroundColor: '#023047',
+                            backgroundColor: '#03587e',
                         },
                     }}
                     onClick={sendOrder}
