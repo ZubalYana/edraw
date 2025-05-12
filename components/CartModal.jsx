@@ -28,7 +28,7 @@ export default function CartModal({ open, onClose }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ cart, userName, userPhone, userEmail, userComment }),
+            body: JSON.stringify({ cart, userName, userPhone, userComment }),
         })
             .then(response => response.json())
             .then(data => console.log('Order sent successfully:', data))
