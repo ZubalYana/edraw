@@ -19,8 +19,11 @@ const fetchServerGoods = async () => {
 
 export default function Header() {
     const [items, setItems] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
     const cart = useCartStore((state) => state.cart);
     const showCartModal = useUIStore((state) => state.showCartModal);
+    const addToCart = useCartStore((state) => state.addToCart);
+    const showSnackbar = useUIStore((state) => state.showSnackbar);
 
     const { data } = useQuery({
         queryKey: ['serverGoods'],
@@ -33,6 +36,11 @@ export default function Header() {
         }
     }, [data]);
 
+    const handleAddToCart = (item) => {
+        addToCart(item);
+        showSnackbar(`${item.name} has been added to the cart`);
+        setSearchValue('');
+    };
 
     return (
         <div className="w-full h-[70px] flex justify-between items-center px-[20px] shadow lg:px-[70px] lg:h-[100px] xl:px-[100px]">
@@ -49,21 +57,30 @@ export default function Header() {
                     freeSolo
                     disableClearable
                     options={items}
+                    inputValue={searchValue}
+                    onInputChange={(e, newValue) => setSearchValue(newValue)}
                     getOptionLabel={(option) => option.name}
                     sx={{ flexGrow: 1 }}
                     renderOption={(props, option) => (
-                        <li {...props} key={option._id} className="flex items-center justify-between p-4 hover:bg-gray-200 cursor-pointer">
-                            <div className='flex gap-2 items-center'>
+                        <li
+                            {...props}
+                            key={option._id}
+                            className="flex items-center justify-between p-4 hover:bg-gray-200 cursor-pointer"
+                        >
+                            <div className="flex gap-2 items-center">
                                 <Image src={option.img} alt={option.name} width={50} height={30} />
                                 {option.name}
                             </div>
-                            <div className='flex gap-3 text-[#121212] items-center text-[20px]'>
-                                <Plus />
+                            <div className="flex gap-3 text-[#121212] items-center text-[20px]">
+                                <Plus
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleAddToCart(option);
+                                    }}
+                                    className="cursor-pointer"
+                                />
                                 <Heart />
                             </div>
-
-
-
                         </li>
                     )}
                     renderInput={(params) => (
