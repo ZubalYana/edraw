@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { useCartStore } from '../store/cartStore';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import { Button, TextField } from '@mui/material';
+import { useUIStore } from '@/store/uiStore';
 
 
 Modal.setAppElement('#__next');
@@ -17,6 +18,8 @@ export default function CartModal({ open, onClose }) {
     const [userPhone, setUserPhone] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userComment, setUserComment] = useState('');
+
+    const showSnackbar = useUIStore((state) => state.showSnackbar);
 
     const total = cart.reduce((acc, item) => {
         const lastPrice = item.prices[item.prices.length - 1] ?? 0;
@@ -41,6 +44,7 @@ export default function CartModal({ open, onClose }) {
                 setUserPhone('');
                 setUserEmail('');
                 setUserComment('');
+                showSnackbar('Order sent successfully!', 'success');
             }).catch(error => console.error('Error sending order:', error));
     };
 
