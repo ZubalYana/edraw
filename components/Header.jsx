@@ -9,6 +9,7 @@ import { Autocomplete, TextField } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { useCartStore } from '../store/cartStore';
 import { useUIStore } from '@/store/uiStore';
+import { Plus, Heart } from 'lucide-react';
 
 const fetchServerGoods = async () => {
     const res = await fetch('http://localhost:5000/items');
@@ -47,8 +48,24 @@ export default function Header() {
                 <Autocomplete
                     freeSolo
                     disableClearable
-                    options={items.map((option) => option.name)}
+                    options={items}
+                    getOptionLabel={(option) => option.name}
                     sx={{ flexGrow: 1 }}
+                    renderOption={(props, option) => (
+                        <li {...props} key={option._id} className="flex items-center justify-between p-4 hover:bg-gray-200 cursor-pointer">
+                            <div className='flex gap-2 items-center'>
+                                <Image src={option.img} alt={option.name} width={50} height={30} />
+                                {option.name}
+                            </div>
+                            <div className='flex gap-3 text-[#121212] items-center text-[20px]'>
+                                <Plus />
+                                <Heart />
+                            </div>
+
+
+
+                        </li>
+                    )}
                     renderInput={(params) => (
                         <TextField
                             {...params}
@@ -66,6 +83,7 @@ export default function Header() {
                         />
                     )}
                 />
+
                 <div className="flex items-center px-5 text-sm text-gray-500 border-l border-[#ccc] cursor-pointer">
                     All <span className="ml-[5px] mt-1"><Image src={dropdownStroke} alt="dropdown" /></span>
                 </div>
