@@ -4,12 +4,14 @@ import { useCartStore } from '../store/cartStore';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import { Button, TextField } from '@mui/material';
 
+
 Modal.setAppElement('#__next');
 
 export default function CartModal({ open, onClose }) {
     const cart = useCartStore((state) => state.cart);
     const updateQuantity = useCartStore((state) => state.updateQuantity);
     const removeItem = useCartStore((state) => state.removeItem);
+    const clearCart = useCartStore((state) => state.clearCart);
 
     const [userName, setUserName] = useState('');
     const [userPhone, setUserPhone] = useState('');
@@ -31,8 +33,15 @@ export default function CartModal({ open, onClose }) {
             body: JSON.stringify({ cart, userName, userPhone, userComment, submitingTime: new Date() }),
         })
             .then(response => response.json())
-            .then(data => console.log('Order sent successfully:', data))
-            .catch(error => console.error('Error sending order:', error));
+            .then(data => {
+                console.log('Order sent successfully:', data);
+                clearCart();
+                onClose();
+                setUserName('');
+                setUserPhone('');
+                setUserEmail('');
+                setUserComment('');
+            }).catch(error => console.error('Error sending order:', error));
     };
 
     const truncate = (str, maxLength) =>
