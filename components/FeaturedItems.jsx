@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import ItemCard from './ItemCard';
 import { useCartStore } from '../store/cartStore';
@@ -11,11 +11,15 @@ const fetchServerData = async () => {
     return json.items;
 };
 
+const categories = ['Hoodie', 'Accessories', 'Men', 'Women', 'Trendy', 'T-shirt'];
+
 export default function FeaturedItems() {
     const { data, error, isLoading } = useQuery({
         queryKey: ['serverData'],
         queryFn: fetchServerData,
     });
+
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     const addToCart = useCartStore((state) => state.addToCart);
     const showSnackbar = useUIStore((state) => state.showSnackbar);
@@ -28,6 +32,10 @@ export default function FeaturedItems() {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
+    const filteredItems = data
+        .filter((item) => item.type === selectedCategory)
+        .slice(0, 6);
+
     return (
         <div className="w-full h-auto flex flex-col items-center bg-[#F3F3F3] py-10 px-[20px]">
             <h1 className="text-[22px] w-[90%] text-center font-bold lg:text-[30px] lg:w-auto">
@@ -38,12 +46,13 @@ export default function FeaturedItems() {
             </p>
 
             <div className="sorting w-[90%] hidden justify-between items-center mt-3 lg:w-auto lg:flex">
-                {['Hoodie', 'Accessories', 'Mens', 'Womans', 'Trendy', 'T-Shirt'].map((cat, i) => (
+                {categories.map((cat, i) => (
                     <div
                         key={i}
-                        className={`py-[20px] px-[25px] font-semibold cursor-pointer ${i === 0
-                            ? 'bg-[#023047] text-[#fff] text-[14px]'
-                            : 'text-[#333] text-[16px]'
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`py-[20px] px-[25px] font-semibold cursor-pointer transition-colors duration-200 ${selectedCategory === cat
+                            ? 'bg-[#023047] text-white text-[14px]'
+                            : 'text-[#333] text-[16px] hover:text-[#023047]'
                             }`}
                     >
                         {cat}
@@ -52,17 +61,21 @@ export default function FeaturedItems() {
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center py-6">
-                {data.map((item) => (
-                    <ItemCard
-                        key={item._id}
-                        image={item.img}
-                        title={item.name}
-                        description={item.description}
-                        prices={item.prices}
-                        rating={item.rate}
-                        onAddToCart={() => handleAddToCart(item)}
-                    />
-                ))}
+                {filteredItems.length === 0 ? (
+                    <p>No items found for "{selectedCategory}"</p>
+                ) : (
+                    filteredItems.map((item) => (
+                        <ItemCard
+                            key={item._id}
+                            image={item.img}
+                            title={item.name}
+                            description={item.description}
+                            prices={item.prices}
+                            rating={item.rate}
+                            onAddToCart={() => handleAddToCart(item)}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );
