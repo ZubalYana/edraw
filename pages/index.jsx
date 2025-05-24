@@ -1,4 +1,3 @@
-import { Jost } from "next/font/google";
 import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
 import HomeSlider from "@/components/HomeSlider";
@@ -16,10 +15,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useEffect } from 'react';
 import { useCartStore } from '../store/cartStore';
 import CartModal from "@/components/CartModal";
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+
 
 export default function Home() {
   const { snackbar, hideSnackbar } = useUIStore();
@@ -30,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={jost.className + " overflow-x-hidden"}>
+    <div className="overflow-x-hidden">
       <Header />
       <NavigationMenu />
       <HomeSlider />
