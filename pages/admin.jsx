@@ -10,7 +10,6 @@ export default function Admin() {
 
     return (
         <div className="overflow-x-hidden">
-            <h1>Admin panel</h1>
             <Orders />
         </div>
     );
